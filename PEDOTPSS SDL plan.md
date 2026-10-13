@@ -6,13 +6,17 @@ dextran sulfate sodium (DS),
 
 chondroitin sulfate (CS), hyaluronic acid (HA), heparin (HEP), 
 > Macromolecular Bioscience. 16 (**2016**), 1227-1238,  [10.1002/mabi.201600059](https://onlinelibrary.wiley.com/doi/10.1002/mabi.201600059)
-> 
+
 **conditions** =
-\(m_{EDOT}:m_{PA}\) = 1:2, 1:1, 2:1
-\(time\) = 1, 2, 6, 12, 24 h
-\(temperature\) = 20, 30, 40, 50 °C
+$m_{EDOT}:m_{PA}$= 1:2, 1:1, 2:1
+
+$time$ = 1, 2, 6, 12, 24 h
+
+$temperature$ = 20, 30, 40, 50 °C
+
 **oxidant** =
 $Na_2S_2O_8 / EDOT$ mol% 1.2–2.0 eq
+
 **catalyst** = 
 $Fe_2(SO_4)_3 / EDOT$ mol% 0.1–1 mol%
 
