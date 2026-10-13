@@ -2,10 +2,10 @@
 **monomer** = EDOT
 **polyanion** = styrene sulfonic acid (SSA, `default`), 
 dextran sulfate sodium (DS), 
-> Acta Biomaterialia 14 (**2015**) 33–42, [10.1016/j.actbio.2014.11.049](https://www.sciencedirect.com/science/article/pii/S1742706114005522?via%3Dihub)
+> Acta Biomaterialia 14 (**2015**) 33-42, [10.1016/j.actbio.2014.11.049](https://www.sciencedirect.com/science/article/pii/S1742706114005522?via%3Dihub)
 
 chondroitin sulfate (CS), hyaluronic acid (HA), heparin (HEP), 
-> Macromolecular Bioscience. 16 (**2016**), 1227−1238,  [10.1002/mabi.201600059](https://onlinelibrary.wiley.com/doi/10.1002/mabi.201600059)
+> Macromolecular Bioscience. 16 (**2016**), 1227-1238,  [10.1002/mabi.201600059](https://onlinelibrary.wiley.com/doi/10.1002/mabi.201600059)
 > 
 **conditions** =
 \(m_{EDOT}:m_{PA}\) = 1:2, 1:1, 2:1
@@ -134,7 +134,7 @@ y(x_i,\beta)=
 
 ### 3.1 Model settings
 dataset = `PEDOT_PSS_supporting_data/PEDOT_experiment.csv`, from the work of Chengshi Wang *et al*., named [Polybot](https://github.com/polybot-nexus/PEDOT_PSS_supporting_data/blob/main/PEDOT_experiment.csv)
-> Nature Communications 16 (**2025**), 1498
+> Nature Communications 16 (**2025**), 1498, [10.1038/s41467-024-55655-3](https://doi.org/10.1038/s41467-024-55655-3)
 
 target = `Average conductivity (S/cm)` and `Average coverage (%)`
 > the target is to maximize both $\sigma$ and $coverage$
@@ -143,6 +143,51 @@ utility function is \(U(x)=1.5\,ReLU(\sigma)+1.0\,ReLU(coverage)\)
 > just for a try
 
 ### 3.2 Results
-
 ![NBI process](results_v9/dashboard.png)
+**Figure 1 | Demonstration of Bayesian optimization over problem formulation space for multi-objective PEDOT:PSS optimization. The PFS framework jointly explores experimental design space \(x\) and problem formulation space \(\beta\).** a, Objective-space representation of candidate solutions, CHIM, and NBI-derived optimal conditions. b, Optimized NBI displacement \(c\) as a function of formulation vector \(\beta\), showing formulation-dependent optimization landscapes. c, Equality residual analysis validating the numerical satisfaction of the NBI constraint \(Q(x)=\Phi\beta+cn\). d,e, Ablation studies and formulation trajectories comparing the complete PFS framework with reduced models. f, Predicted conductivity–coverage landscape highlighting the high-performance regions identified by PFS.
+
 ![NBI process](results_v9/nbi_process.gif)
+**Figure 2 | The animation of NBI process, which is the core process of PFS**
+
+The suggested optimal conditions (`results_v9/next_experiment.json`):
+```
+{
+  "status": "predicted_not_experimentally_validated",
+  "recommendation_basis": "best NBI solution actually queried by full PFS, first seed",
+  "selected_beta": [
+    -0.16666667,
+    1.16666667
+  ],
+  "selected_round": 10,
+  "experimental_conditions": {
+    "DMSO concentration (Vol%)": 0.0,
+    "EG concentration (Vol%)": 4.8897795135621855,
+    "Coating speed (mm/sec)": 1.1356300571871132,
+    "Coating temperature (Celsius)": 93.69397960169118,
+    "Post-processing solvent No.": 5,
+    "Post-processing solvent MeOH (vol%)": 60.0,
+    "Post-processing solvent EtOH (vol%)": 40.0,
+    "Post-processing solvent H2O (vol%)": 0.0,
+    "Post coating speed (mm/sec)": 1.1702676772033507,
+    "Post coating temperature (Celsius)": 68.77378613034858
+  },
+  "predictions": {
+    "conductivity_S_per_cm": 2083.8585183123523,
+    "coverage_percent": 100.0666961200221,
+    "utility": 3.590247971962171,
+    "nbi_c": 0.10714857133226062,
+    "nbi_equality_residual": 5.549489744174483e-13,
+    "q1_conductivity_loss": -0.004277170997508548,
+    "q2_coverage_loss": -0.0006669612002210279
+  },
+  "minimum_thresholds": {
+    "conductivity_S_per_cm": 665.0,
+    "coverage_percent": 72.0
+  },
+  "limitations": [
+    "Fixed property GP predictions, not lab measurements",
+    "SLSQP local optimum only",
+    "Check chemical feasibility and experimental uncertainty before execution"
+  ]
+}
+```
