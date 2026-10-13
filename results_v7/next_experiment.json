@@ -1,0 +1,39 @@
+{
+  "status": "predicted_not_experimentally_validated",
+  "recommendation_basis": "best NBI solution actually queried by full PFS, first seed",
+  "selected_beta": [
+    1.3,
+    -0.30000000000000004
+  ],
+  "selected_round": 1,
+  "experimental_conditions": {
+    "DMSO concentration (Vol%)": 0.0,
+    "EG concentration (Vol%)": 4.834175156658337,
+    "Coating speed (mm/sec)": 1.3339956695844437,
+    "Coating temperature (Celsius)": 90.68941998407344,
+    "Post-processing solvent No.": 6,
+    "Post-processing solvent MeOH (vol%)": 80.0,
+    "Post-processing solvent EtOH (vol%)": 20.0,
+    "Post-processing solvent H2O (vol%)": 0.0,
+    "Post coating speed (mm/sec)": 0.9980013957890002,
+    "Post coating temperature (Celsius)": 58.63097067987688
+  },
+  "predictions": {
+    "conductivity_S_per_cm": 1671.928039220277,
+    "coverage_percent": 93.9043014220217,
+    "utility": 2.5754926625195145,
+    "nbi_c": 0.13217915467045313,
+    "nbi_equality_residual": 1.6741619643372115e-12,
+    "q1_conductivity_loss": 0.015871325060980497,
+    "q2_coverage_loss": 0.060956985779782924
+  },
+  "minimum_thresholds": {
+    "conductivity_S_per_cm": 665.0,
+    "coverage_percent": 72.0
+  },
+  "limitations": [
+    "Fixed property GP predictions, not lab measurements",
+    "SLSQP local optimum only",
+    "Check chemical feasibility and experimental uncertainty before execution"
+  ]
+}
