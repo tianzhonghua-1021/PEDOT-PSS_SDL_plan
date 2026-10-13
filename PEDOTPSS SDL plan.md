@@ -1,6 +1,8 @@
 ## 1 Materials selection
 **monomer** = EDOT
+
 **polyanion** = styrene sulfonic acid (SSA, `default`), 
+
 dextran sulfate sodium (DS), 
 
 > Acta Biomaterialia 14 (**2015**) 33-42, [10.1016/j.actbio.2014.11.049](https://www.sciencedirect.com/science/article/pii/S1742706114005522?via%3Dihub)
@@ -58,7 +60,9 @@ experimental variables = {
 
 **step 1 experimental table**
 > target properties: Q1 & Q2, and minimize them
+> 
 ---
+
 **step 2 loss normalization**
 | experiment no. | Q1 | Q2 |
 | --- | --- | --- |
@@ -67,43 +71,64 @@ experimental variables = {
 | C | 0.9 | 2.0 |
 
 so two extreme points are 
+
 > E1 (2.0,0.8) for Q1 max
+> 
 > E2 (0.9, 2.0) for Q2 max
 
 for Q1 best value:
+
 $$Q_{1}^{best}=2.0$$
+
 for Q1 worst value:
+
 $$Q_{1}^{worst}=0.5$$
+
 so the normalized Q1:
+
 $$Q_{1}^{norm}=\frac{Q_1-0.5}{2-0.5}$$
+
 the same process for Q2
+
 Then, the normalized Q1 and Q2:
+
 | experiment no. | Q1 | Q2 |
 | --- | --- | --- |
 | A | 1.0 | 0.267 |
 | B | 0 | 0 |
 | C | 0.267 | 1.0 |
 
+---
 
 **step 3 construct CHIM**
 CHIM is the line connecting extreme points:
+
 $$CHIM=E_1+\lambda(E_2-E_1)$$
 
 Now we define $\beta$ means how important the Q1 and Q2 are, for example: $\beta=(0.8,0.2)$ means the Q1 is 4 times more important than Q2.
 
 For a given preference vector $\beta$, we define a **$\Phi_\beta$** as:
+
 $$\Phi_\beta=0.8E_1+0.2E_2$$
+
 integrate the values, then we can get:
+
 $$\Phi_\beta=(1.78,1.04)$$
 
 Next, we define a normal vector **$n$** satisfing:
+
 $$n\cdot(E_2-E_1)=0$$
 
 Lastly, we can define a **$c$** representing the distance how long we exploring, and the target is to find:
-> $\argmax\ c$ to satisfy $Q(x_i)=\Phi_\beta+c n$
+
+> ${max}_{x,c}\ c$ to satisfy $Q(x_i)=\Phi_\beta+c n$
+
+---
 
 **step 4 find different $x_i$ (composition)**
+
 for each $x_i$, we can calculate the corresponding $Q(x_i)$ (the properties).
+
 Then we can define an **$\epsilon$** as a threshold:
 
 $$||Q(x_i)-(\Phi \beta +cn)||<\epsilon$$
@@ -118,18 +143,30 @@ x_i-->Q(x_i)-->PFS calculation-->find c-->satisfy threshold epsilon
 
 finally, we will care about the $c_{max}$
 
+---
+
 **step 5 utility funciton**
 we define a utility function to evaluate the performance of each $x_i$:
+
 $$U(x_i)=\sum_{i} \alpha_i u(Q(x_i))_i$$
+
 $$u_i = sigmoid/ReLU/tanh/...$$
+
 where $\alpha_i$ is the weight for each property, and $u_i$ is the normalized utility function for each property.
+
+---
 
 **step 6 exploration of $\beta$**
 So far, the $\beta$ was defined by human, but what about exploration of $\beta$? That's the core of PFS.
+
 We use kernel density estimation (KDE) to estimate the distribution of $\beta$ based on the previous experiments, and then we can sample new $\beta$ from the estimated distribution.
 
+---
+
 **step 7 feasibility control**
+
 for each $x_i$ and $\beta$, we can define a feasibility function to evaluate whether the experiment is successful or not:
+
 $$
 y(x_i,\beta)=
 \begin{cases}
